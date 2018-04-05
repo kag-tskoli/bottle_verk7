@@ -1,5 +1,6 @@
 from bottle import run, route, template, request, response, redirect, app
 from beaker.middleware import SessionMiddleware
+import os
 
 #Einfalt cookie sýnidæmi
 '''
@@ -99,4 +100,4 @@ def remove_cart():
     session.delete()
     return redirect('/shop')
 
-run(app=my_session, port=5000)
+run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), app=my_session)
